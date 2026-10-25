@@ -45,14 +45,14 @@ const addTask = function () {
   taskInput.value = '';
 };
 
-const isEditMode = function () {
+const toggleEditMode = function () {
   const listItem = this.parentNode;
 
   const editInput = listItem.querySelector('input[type=text]');
   const label = listItem.querySelector('label');
   const editBtn = listItem.querySelector('.edit');
-  const containsClass = listItem.classList.contains('editMode');
-  if (containsClass) {
+  const isEditMode = listItem.classList.contains('editMode');
+  if (isEditMode) {
     label.innerText = editInput.value;
     editBtn.innerText = 'Edit';
   } else {
@@ -89,7 +89,7 @@ const bindTaskEvents = function (taskListItem, checkBoxEventHandler) {
   const editButton = taskListItem.querySelector('button.edit');
   const deleteButton = taskListItem.querySelector('button.delete');
 
-  editButton.onclick = isEditMode;
+  editButton.onclick = toggleEditMode;
   deleteButton.onclick = deleteTask;
   checkBox.onchange = checkBoxEventHandler;
 };
